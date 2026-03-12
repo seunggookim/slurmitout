@@ -18,14 +18,14 @@ wget https://github.com/seunggookim/slurmitout/archive/refs/heads/main.zip && un
 ```
 The above will create a directory `~/slurmitout-main`.
 
-Now, open an MATLAB (i.e., open an interactive session and load a MATLAB module environment), and add this path by copying and pasting the line blow in the MALTAB prompt (>>) and press Enter.
+Now, open a MATLAB (i.e., open an interactive session and load a MATLAB module environment), and add this path by copying and pasting the line below in the MATLAB prompt (>>) and press Enter.
 ```matlab
 addpath ~/slurmitout-main
 ```
 
-From here, the prompt character indices which script language you're supposed to type (or copy-and-paste) into. $ means bash. >> means MATLAB.
+From here, the prompt character indicates which script language you're supposed to type (or copy-and-paste) into. $ means bash. >> means MATLAB.
 
-### 1. Test on your account
+### 1. Test it on your account
 If you see no warning message, then let's run a small test:
 ```matlab
 >> cd ~/slurmitout-main/test/
@@ -37,11 +37,11 @@ This script runs 10 jobs to sleep 1 to 10 seconds in parallel. How do we see whi
 $ squeue --me
 ```
 
-Each job say something into their command windows. How do we see what they are saying?
+Each job says something in its command window. How do we see what they are saying?
 ```bash
 $ cat ~/slurm/0001/*_1.out
 ```
-This will print out the first job in the the first batch said. Why "0001"? Just a serial number in your log folder `~/slurm`. It is independent from the Slurm job ID. 
+This will print out what the first job in the first batch said. Why "0001"? Just a serial number in your log folder `~/slurm`. It is independent from the Slurm job ID. 
 
 
 ## how do i really use it for my work?
@@ -69,7 +69,7 @@ EVERYTHING = [];
 for iSubj = 1:50
   load (['THIS_DATA_',num2str(iSubj)], 'THIS_DATA')
   THIS_OUTPUT = dothis(THAT_DATA, THIS_DATA);
-  EVERYTHING = [EVERYTTHING; THIS_OUTPUT];
+  EVERYTHING = [EVERYTHING; THIS_OUTPUT];
 end
 ```
 
@@ -87,7 +87,7 @@ end
 and save this as a `myhelper.m` in your project directory.
 
 ### 3. slurm it out
-Now you need to create a script that calls `slurmitout`. But, before submit 50 subjects, it is always good to test if this helper function really works:
+Now you need to create a script that calls `slurmitout`. But before submitting 50 subjects, it is always good to test if this helper function really works:
 ```matlab
 jobs = {};
 for iSubj = 1:50
@@ -97,7 +97,7 @@ myhelper(jobs{1})  % test run for the first subject
 %slurmitout(@myhelper, jobs)  % not yet.
 ```
 
-If the helper function works fine then go ahead and run everything:
+If the helper function works fine, then go ahead and run everything:
 ```matlab
 jobs = {};
 for iSubj = 1:50
@@ -109,7 +109,7 @@ slurmitout(@myhelper, jobs) % now submit all 50 subjects
 
 
 ## compatibility
-**OS/language**: This function assumes that you're using a MATLAB on a Linux because you're supposed on a HPC server with Slurm.
+**OS/language**: This function assumes that you're using MATLAB on Linux because you're supposed to be on an HPC server with Slurm.
 
 **MATLAB versions**: It's tested on R2018a, R2020b, R2024b, R2025b
 
