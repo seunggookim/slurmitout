@@ -1,15 +1,41 @@
 # slurmitout
+(cc0) 2026, <seung-goo.kim@ae.mpg.de> 
 
-## directory structure
+## what is this?
+It's a lazy workaround of writing `sbatch` script for old-timers who still use MATLAB. This is from an internal repo (`ncml-code`).
 
-### Synchronized
-`./code/`  for functions, scripts, small (<50 MB) packages for each language
+## what is `sbatch`?
+It's a [Slurm](https://slurm.schedmd.com/documentation.html) command to submit an array of jobs to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
 
-`./docs/`  for documents (notes, presentation slides, manuscripts, other human-readable files)
+## how do i use it?
+1. Prepare your helper function and a cell array of jobs.
 
-`./figs/`  to dump figure files in
 
-`./meta/`  for small (<50 MB) meta-data files
+2. Submit it.
+```matlab
+>> slurmitout(@yourHelperFunction, yourJobs)
+```
 
-### Not synchronized
-`./data/`  for large (>50 MB) files. The folder name "data" is set NOT TO SYNCHRONIZED (see `.gitignore`)
+3. Check the outputs while running.
+
+
+4. When it's all done, check if everything is done fine! (If not, debug your functions and rerun everything [as always]).
+
+## examples
+
+
+## compatibility
+**OS/language**: This function assumes that you're using a MATLAB on a Linux because you're supposed on a HPC server with Slurm.
+
+**MATLAB versions**: It's tested on R2018a, R2024b, R2025b
+
+## why it doesn't work for me?
+
+- It says, ``
+
+  + If you try to run 1000+ jobs, use `slurmmanyout()`.
+
+- It says, ``
+
+  + 
+
