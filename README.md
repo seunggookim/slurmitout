@@ -1,15 +1,15 @@
 # slurmitout
 (cc0) 2026-03-12, <seung-goo.kim@ae.mpg.de> 
 
-## what is this?
+## what is this? 
 It's a lazy workaround of writing `sbatch` scripts for old-timers who still use MATLAB. This is from an internal repo (`ncml-code`), and mainly for MPIEAers[^1].
 
 
 
-## what is `sbatch`?
+## what is `sbatch`? 🤨
 It's a [Slurm](https://slurm.schedmd.com/documentation.html) command to submit an array of jobs (up to 1000) to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
 
-## how do i use it?
+## how do i use it? 🛠️
 ### 0. Download this repo and path it in MATLAB.
 
 Let's say you just want to download it and extract it in your home directory on your HPC. Once you log in your HPC (either SSH or VNC terminal), copy and paste the line below into your shell prompt ($) and press Enter.
@@ -41,10 +41,10 @@ Each job says something in its command window. How do we see what they are sayin
 ```bash
 $ cat ~/slurm/0001/*_1.out
 ```
-This will print out what the first job in the first batch said. Why "0001"? Just a serial number in your log folder `~/slurm`. It is independent from the Slurm job ID. 
+This will print out what the first job in the first batch said. Why `0001`? Just a serial number in your log folder `~/slurm`, which is just created by `slurmitout`. It is independent from the Slurm job ID. You can always clear the log file directory once you review what they (the jobs🤖) said.
 
 
-## how do i really use it for my work?
+## okay, but how do i really use it for my work? 🤔
 
 ### 0. syntax
 If you take a look at the `test.m`:
@@ -108,12 +108,12 @@ slurmitout(@myhelper, jobs) % now submit all 50 subjects
 ```
 
 
-## compatibility
+## compatibility 💾
 **OS/language**: This function assumes that you're using MATLAB on Linux because you're supposed to be on an HPC server with Slurm.
 
 **MATLAB versions**: It's tested on R2018a, R2020b, R2024b, R2025b
 
-## why it doesn't work for me?
+## why it doesn't work for me? 😵‍💫
 (this section is reserved for future trouble-shooting)
 
 ---
