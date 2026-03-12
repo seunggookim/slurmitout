@@ -1,5 +1,5 @@
 # slurmitout
-(cc0) 2026, <seung-goo.kim@ae.mpg.de> 
+(cc0) 2026-03-12, <seung-goo.kim@ae.mpg.de> 
 
 ## what is this?
 It's a lazy workaround of writing `sbatch` scripts for old-timers who still use MATLAB. This is from an internal repo (`ncml-code`), and mainly for MPIEAers[^1].
@@ -10,7 +10,7 @@ It's a lazy workaround of writing `sbatch` scripts for old-timers who still use 
 It's a [Slurm](https://slurm.schedmd.com/documentation.html) command to submit an array of jobs (up to 1000) to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
 
 ## how do i use it?
-0. Download this repo and path it in MATLAB.
+### 0. Download this repo and path it in MATLAB.
 
 Let's say you just want to download it and extract it in your home directory on your HPC. Once you log in your HPC (either SSH or VNC terminal), copy and paste the line below into your shell prompt ($) and press Enter.
 ```bash
@@ -25,6 +25,7 @@ addpath ~/slurmitout-main
 
 From here, the prompt character indices which script language you're supposed to type (or copy-and-paste) into. $ means bash. >> means MATLAB.
 
+### 1. Test on your account
 If you see no warning message, then let's run a small test:
 ```matlab
 >> cd ~/slurmitout-main/test/
@@ -45,6 +46,7 @@ This will print out the first job in the the first batch said. Why "0001"? Just 
 
 ## how do i really use it for my work?
 
+### 0. syntax
 If you take a look at the `test.m`:
 ```matlab
 jobs = {};
@@ -53,11 +55,12 @@ for i = 1:10
 end
 dnLog = slurmitout(@sleepfor, jobs);
 ```
- you'll notice that the basic syntax is:
+you'll notice that the basic syntax is:
 ```
 slurmitout(FUNCTION_HANDLE, CELL_ARRAY_WITH_JOBS)
 ```
 
+### 1. your script
 Say you want to run some process over 50 subjects. Then your script may look like this:
 ```matlab
 addpath MY_TOOLBOX
@@ -70,6 +73,7 @@ for iSubj = 1:50
 end
 ```
 
+### 2. helper function (or "wrapper")
 First you need to create a helper function that gets `job` structure as an input and run just one subject. Let's say `job.iSubj` is the only field you use:
 ```matlab
 function myhelper(job)
@@ -82,6 +86,7 @@ end
 ```
 and save this as a `myhelper.m` in your project directory.
 
+### 3. slurm it out
 Now you need to create a script that calls `slurmitout`. But, before submit 50 subjects, it is always good to test if this helper function really works:
 ```matlab
 jobs = {};
@@ -92,7 +97,7 @@ myhelper(jobs{1})  % test run for the first subject
 %slurmitout(@myhelper, jobs)  % not yet.
 ```
 
-If this works fine then go ahead and run everything:
+If the helper function works fine then go ahead and run everything:
 ```matlab
 jobs = {};
 for iSubj = 1:50
@@ -101,7 +106,6 @@ end
 %myhelper(jobs{1})  % test run for the first subject
 slurmitout(@myhelper, jobs) % now submit all 50 subjects
 ```
-
 
 
 ## compatibility
