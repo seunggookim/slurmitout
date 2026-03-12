@@ -1,5 +1,5 @@
 clear; restoredefaultpath;
-addpath(pwd)
+addpath('../')
 jobs = {};
 for i = 1:10
   jobs{i} = struct('minutes',i/60);

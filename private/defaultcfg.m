@@ -1,4 +1,4 @@
-function Cfg = defaultcfg(defaultCfg, cfg, ProcName, IsVerbose)
+function cfg = defaultcfg(defaultCfg, cfg, procName, IsVerbose)
 %defaultcfg check input fields and set them to default values
 %
 % cfg = defaultjob(defaultCfg, cfg, [ProcName], [IsVerbose])
@@ -6,18 +6,18 @@ function Cfg = defaultcfg(defaultCfg, cfg, ProcName, IsVerbose)
 % (cc) 2021, sgKIM.
 
 if not(exist('IsVerbose','var')), IsVerbose=true; end
-if exist('ProcName','var')
-  ProcName = ['[',ProcName, '] '];
+if exist('procName','var')
+  procName = ['[',procName, '] '];
 else
-  ProcName = '';
+  procName = '';
 end
 
-FldNames = fieldnames(defaultCfg);
-for iFld = 1:numel(FldNames)
-  if ~isfield(cfg, FldNames{iFld})
-    value = DefaultCfg.(FldNames{iFld});
+fldNames = fieldnames(defaultCfg);
+for iFld = 1:numel(fldNames)
+  if ~isfield(cfg, fldNames{iFld})
+    value = defaultCfg.(fldNames{iFld});
     if IsVerbose
-      fprintf('%s(DEFAULT) cfg.%s = ', ProcName, FldNames{iFld});
+      fprintf('%s(DEFAULT) cfg.%s = ', procName, fldNames{iFld});
       if numel(value) > 10
         fprintf('<%s %i x %i> ...', class(value), size(value));
         disp(value(end-5:end)); 
@@ -31,7 +31,7 @@ for iFld = 1:numel(FldNames)
         fprintf('\n');
       end
     end
-    cfg.(FldNames{iFld}) = value;
+    cfg.(fldNames{iFld}) = value;
   end
 end
 
