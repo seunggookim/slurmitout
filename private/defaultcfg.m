@@ -1,7 +1,7 @@
-function Cfg = defaultcfg(DefaultCfg, Cfg, ProcName, IsVerbose)
+function Cfg = defaultcfg(defaultCfg, cfg, ProcName, IsVerbose)
 %defaultcfg check input fields and set them to default values
 %
-% Cfg = defaultjob(DefaultCfg, Cfg, [ProcName], [IsVerbose])
+% cfg = defaultjob(defaultCfg, cfg, [ProcName], [IsVerbose])
 %
 % (cc) 2021, sgKIM.
 
@@ -12,12 +12,12 @@ else
   ProcName = '';
 end
 
-FldNames = fieldnames(DefaultCfg);
+FldNames = fieldnames(defaultCfg);
 for iFld = 1:numel(FldNames)
-  if ~isfield(Cfg, FldNames{iFld})
+  if ~isfield(cfg, FldNames{iFld})
     value = DefaultCfg.(FldNames{iFld});
     if IsVerbose
-      fprintf('%s(DEFAULT) Cfg.%s = ', ProcName, FldNames{iFld});
+      fprintf('%s(DEFAULT) cfg.%s = ', ProcName, FldNames{iFld});
       if numel(value) > 10
         fprintf('<%s %i x %i> ...', class(value), size(value));
         disp(value(end-5:end)); 
@@ -31,7 +31,7 @@ for iFld = 1:numel(FldNames)
         fprintf('\n');
       end
     end
-    Cfg.(FldNames{iFld}) = value;
+    cfg.(FldNames{iFld}) = value;
   end
 end
 
