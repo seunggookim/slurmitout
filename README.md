@@ -9,7 +9,7 @@ It's a lazy workaround of writing `sbatch` scripts for old-timers who still use 
 ## what is `sbatch`? 🤨
 It's a [Slurm](https://slurm.schedmd.com/documentation.html) command to submit an array of jobs (up to 1000) to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
 
-## how do i use it? 🛠️
+## how do I run it? 🏃‍➡️
 ### 0. Download this repo and path it in MATLAB.
 
 Let's say you just want to download it and extract it in your home directory on your HPC. Once you log in your HPC (either SSH or VNC terminal), copy and paste the line below into your shell prompt ($) and press Enter.
@@ -109,7 +109,7 @@ slurmitout(@myhelper, jobs) % now submit all 50 subjects
 
 
 ## compatibility 💾
-**OS/language**: This function assumes that you're using MATLAB on Linux because you're supposed to be on an HPC server with Slurm.
+**OS/language**: This function assumes that you're using **MATLAB** on **Linux** because you're supposed to be on an HPC server with Slurm.
 
 **MATLAB versions**: It's tested on R2018a, R2020b, R2024b, R2025b
 
