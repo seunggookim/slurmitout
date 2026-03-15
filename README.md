@@ -18,28 +18,25 @@ wget https://github.com/seunggookim/slurmitout/archive/refs/heads/main.zip && un
 ```
 The above will create a directory `~/slurmitout-main`.
 
-Now, open a MATLAB (i.e., open an interactive session and load a MATLAB module environment), and add this path by copying and pasting the line below in the MATLAB prompt (>>) and press Enter.
+Now, open a MATLAB (i.e., open an interactive session and load a MATLAB module environment), and add this path by copying and pasting the line below in the MATLAB prompt (>>) and pressing Enter.
 ```matlab
 addpath ~/slurmitout-main
 ```
 
-From here, the prompt character indicates which script language you're supposed to type (or copy-and-paste) into. $ means bash. >> means MATLAB.
-
 ### 1. Test it on your account
-If you see no warning message, then let's run a small test:
+If you see no warning message, then let's run a small test. Copy and paste the below in the MATLAB command window:
 ```matlab
->> cd ~/slurmitout-main/test/
->> test
+cd ~/slurmitout-main/test/; test
 ```
 
-This script runs 10 jobs to sleep 1 to 10 seconds in parallel. How do we see which jobs are running for me?
+This script runs 10 jobs to sleep 1 to 10 seconds in parallel. How do we see which jobs are running for me? Use the Bash command below:
 ```bash
-$ squeue --me
+squeue --me
 ```
 
-Each job says something in its command window. How do we see what they are saying?
+Each job says something in its command window. How do we see what they are saying? This Bash command shows you the log file:
 ```bash
-$ cat ~/slurm/0001/*_1.out
+cat ~/slurm/0001/*_1.out
 ```
 This will print out what the first job in the first batch said. Why `0001`? Just a serial number in your log folder `~/slurm`, which is just created by `slurmitout`. It is independent from the Slurm job ID. You can always clear the log file directory once you review what they (the jobs🤖) said.
 
