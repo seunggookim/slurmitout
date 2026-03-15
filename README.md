@@ -1,13 +1,13 @@
 # slurmitout
 (cc0) 2026-03-12, <seung-goo.kim@ae.mpg.de> 
 
-## what is this? 
-It's a lazy workaround of writing `sbatch` scripts for old-timers who still use MATLAB. This is from an internal repo (`ncml-code`), and mainly for MPIEAers[^1].
-
+## slurm what out?
+This is a lazy MATLAB one-liner to submit hundreds or thousands of parallel jobs to a HPC job manager [Slurm](https://slurm.schedmd.com/documentation.html), directly from MATLAB, without having to write `sbatch` scripts manually. 
+This is from an internal repo ([`ncml-code`](https://gitbhub.com/seunggookim/ncml-code), and mainly for MPIEAers[^1].
 
 
 ## what is `sbatch`? 🤨
-It's a [Slurm](https://slurm.schedmd.com/documentation.html) command to submit an array of jobs (up to 1000) to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
+It's a Slurm command to submit an array of jobs (up to 1000) to run in parallel on your [HPC cluster](https://en.wikipedia.org/wiki/High-performance_computing) server.
 
 ## how do I run it? 🏃‍➡️
 ### 0. Download this repo and path it in MATLAB.
